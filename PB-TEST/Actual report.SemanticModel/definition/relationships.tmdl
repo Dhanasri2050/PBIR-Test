@@ -1,0 +1,79 @@
+relationship 7df4a367-eb51-49bb-bc0a-6e2ccd3df918
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Residential prices in postcode'.reporting_month
+	toColumn: LocalDateTable_3366626e-c82a-4802-b561-d95b2dab63a7.Date
+
+relationship a245e930-0e9d-4761-9f75-747f2e176870
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'MSP growth'.reporting_month
+	toColumn: LocalDateTable_be6d13ba-7860-4f0d-ae8c-8fcf6cdf40c6.Date
+
+relationship eb9f91db-e2f5-4ab3-9f18-dfa22c0a923a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Actual sales price growth'.reporting_month
+	toColumn: LocalDateTable_38f2b726-373c-4ea6-b332-7efbf1fe697d.Date
+
+relationship 6bd9c565-d490-47bc-a9d2-0f8cd577d278
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Cumulative and Realised Sales'.reporting_month
+	toColumn: LocalDateTable_f101a8ab-7464-4be9-85df-a5ede31dbffc.Date
+
+relationship 1ce5171e-4c52-4190-835d-2e08f64a7633
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_source_date
+	toColumn: LocalDateTable_38683b58-2800-4276-bc7e-94f32b2f4f73.Date
+
+relationship 17cf1ea3-f890-432b-8459-1aa4f128a280
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_source_timestamp
+	toColumn: LocalDateTable_18bbe360-094a-4972-897c-dcaec9cd0774.Date
+
+relationship f40e2391-2b4a-4446-9a73-fdae98555683
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_job_start_timestamp
+	toColumn: LocalDateTable_ce642185-c6e6-4a4f-8971-b946370de8c2.Date
+
+relationship c580a501-845b-48e2-8c2b-6b476f826aef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_record_insert_dt
+	toColumn: LocalDateTable_ecb7e0cb-469e-45f6-9afa-b48848f2c3af.Date
+
+relationship be5d57e2-2a76-427e-a00c-e56cdfd73096
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_start_date
+	toColumn: LocalDateTable_591d14a5-01a3-468c-accb-813df6929656.Date
+
+relationship 66cbc3f0-bf86-42f1-854a-0e9b60bb73f2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: allvillage.audit_end_date
+	toColumn: LocalDateTable_73902fbd-f8b8-4ad9-8819-7a8ceabc90c3.Date
+
+relationship a0369032-7cef-4681-8b24-0f6b1501b5bb
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Residential prices in postcode'.village_code
+	toColumn: allvillage.D365Dimension
+
+relationship 26bd455a-7994-49d6-bab1-b43a4c837ba8
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'MSP growth'.village_code
+	toColumn: allvillage.D365Dimension
+
+relationship bd833f5a-7d18-4e2c-81b1-9ff6f0348445
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Actual sales price growth'.village_code
+	toColumn: allvillage.D365Dimension
+
+relationship a8e7533c-1446-4af8-82dc-3619d62edb56
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Cumulative and Realised Sales'.village_code
+	toColumn: allvillage.D365Dimension
+
+relationship 6788cf1e-5414-41d9-a25a-0446bf6c8e5c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Sales, Stock & Waitlist'.reporting_month
+	toColumn: LocalDateTable_911fd443-3dd3-485f-987f-4fff8046d512.Date
+
+relationship 81e04ee8-bc07-4ff7-810c-7256feda0920
+	fromColumn: 'Sales, Stock & Waitlist'.village_code
+	toColumn: allvillage.D365Dimension
+

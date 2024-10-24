@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.3.0/schema.json",
+  "name": "28989cf870b7bb394ecb",
+  "position": {
+    "x": 967.14285714285722,
+    "y": 487.14285714285717,
+    "z": 10062,
+    "height": 232.85714285714286,
+    "width": 312.85714285714289,
+    "tabOrder": 10062
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Residential prices in postcode"
+                    }
+                  },
+                  "Property": "Average price of residential homes in postcode today"
+                }
+              },
+              "queryRef": "Query13.Average price of residential homes in postcode today",
+              "nativeQueryRef": "Average price of residential homes in postcode today"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Residential prices in postcode"
+                  }
+                },
+                "Property": "Average price of residential homes in postcode today"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#BEE13E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

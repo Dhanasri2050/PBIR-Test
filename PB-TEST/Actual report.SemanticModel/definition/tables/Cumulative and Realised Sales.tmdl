@@ -1,0 +1,305 @@
+table 'Cumulative and Realised Sales'
+	lineageTag: 1aee0d48-4985-47a9-8236-903830d5a6b6
+
+	measure 'Cumulative Actual Sales Growth % ACT' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "ACT" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 10f9c1cf-8956-4f59-9fde-b61f16dc73d9
+
+	measure 'Cumulative Actual Sales Growth % NSW' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "NSW" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 85b7063c-ae8c-4b44-a0eb-b33fde3ea0b4
+
+	measure 'Cumulative Actual Sales Growth % VIC' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "VIC" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 80bbdb96-6b2a-49cb-89b2-825116117b4d
+
+	measure 'Cumulative Actual Sales Growth % QLD' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "QLD" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 87221819-9474-43a5-baa7-9c35d5b05fc3
+
+	measure 'Cumulative Actual Sales Growth % SA' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "SA" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e07d12ed-8b3f-4e5d-82d3-b86e8327872f
+
+	measure 'Cumulative Actual Sales Growth %' =
+			
+			DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e6afd4ec-3ccf-4972-aa82-0f81d9b3e93e
+
+	measure 'Cumulative Actual Sales Target 3% pa' = ```
+			
+			AVERAGEX(
+			    'Cumulative and Realised Sales',
+			    DATEDIFF(
+			        DATE(2022, 6, 1),
+			        'Cumulative and Realised Sales'[reporting_month],
+			        MONTH
+			    ) / 12
+			) * 0.03
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 05770e7a-0b44-4c7c-9a95-0b6c4c11bdbe
+
+	measure 'Realised Sales/MSP %' =
+			
+			DIVIDE(SUM('Cumulative and Realised Sales'[numerator]), SUM('Cumulative and Realised Sales'[denominator])) + 1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 76ba26bb-05b2-4fd6-a9ce-9f7b9cc370bf
+
+	measure 'Realised Sales/MSP % NSW' =
+			
+			VAR A =
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'Cumulative and Realised Sales'[numerator] ),
+			            SUM ( 'Cumulative and Realised Sales'[denominator] )
+			        ),
+			        KEEPFILTERS ( allvillage[State] = "NSW" )
+			    )
+			RETURN
+			    SWITCH (
+			        SELECTEDVALUE ( allvillage[State] ),
+			        "VIC", a,
+			        "QLD", a,
+			        "SA", a,
+			        "ACT", a,
+			        "NSW", a + 1,
+			        a + 1
+			    )
+		lineageTag: 20458f1b-b2e7-4300-b91c-c33d65b61696
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Realised Sales/MSP % VIC' =
+			
+			VAR A =
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'Cumulative and Realised Sales'[numerator] ),
+			            SUM ( 'Cumulative and Realised Sales'[denominator] )
+			        ),
+			        KEEPFILTERS ( allvillage[State] = "VIC" )
+			    )
+			RETURN
+			    SWITCH (
+			        SELECTEDVALUE ( allvillage[State] ),
+			        "NSW", a,
+			        "QLD", a,
+			        "SA", a,
+			        "ACT", a,
+			        "VIC", a + 1,
+			        a + 1
+			    )
+		lineageTag: 08c91622-60ab-41ef-bae4-e4c6e3152fd4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Realised Sales/MSP % QLD' =
+			
+			VAR A =
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'Cumulative and Realised Sales'[numerator] ),
+			            SUM ( 'Cumulative and Realised Sales'[denominator] )
+			        ),
+			        KEEPFILTERS ( allvillage[State] = "QLD" )
+			    )
+			RETURN
+			    SWITCH (
+			        SELECTEDVALUE ( allvillage[State] ),
+			        "VIC", a,
+			        "ACT", a,
+			        "SA", a,
+			        "NSW", a,
+			        "QLD", a + 1,
+			        a + 1
+			    )
+		lineageTag: 7bf30962-b5e0-4f95-8708-532bbe2e0457
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Realised Sales/MSP % SA' =
+			
+			VAR A =
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'Cumulative and Realised Sales'[numerator] ),
+			            SUM ( 'Cumulative and Realised Sales'[denominator] )
+			        ),
+			        KEEPFILTERS ( allvillage[State] = "SA" )
+			    )
+			RETURN
+			    SWITCH (
+			        SELECTEDVALUE ( allvillage[State] ),
+			        "VIC", a,
+			        "QLD", a,
+			        "NSW", a,
+			        "ACT", a,
+			        "SA", a + 1,
+			        a + 1
+			    )
+		lineageTag: 47ccced5-68fc-43f0-98ee-f832d5e8cd03
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Realised Sales/MSP % ACT' = ```
+			
+			VAR A =
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'Cumulative and Realised Sales'[numerator] ),
+			            SUM ( 'Cumulative and Realised Sales'[denominator] )
+			        ),
+			        KEEPFILTERS ( allvillage[State] = "ACT" )
+			    )
+			RETURN
+			    SWITCH (
+			        SELECTEDVALUE ( allvillage[State] ),
+			        "VIC", a,
+			        "QLD", a,
+			        "SA", a,
+			        "NSW", a,
+			        "ACT", a + 1,
+			        a + 1    
+			    )
+			```
+		lineageTag: c5e480c1-30f3-47df-8e50-665aa9cd0353
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column kpi_name
+		dataType: string
+		lineageTag: 37708bb3-160f-4aeb-be0d-765f2694a41d
+		summarizeBy: none
+		sourceColumn: kpi_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_month
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: e281b611-0797-4da0-9116-8923b8ed8ff2
+		summarizeBy: none
+		sourceColumn: reporting_month
+
+		variation Variation
+			isDefault
+			relationship: 6bd9c565-d490-47bc-a9d2-0f8cd577d278
+			defaultHierarchy: LocalDateTable_f101a8ab-7464-4be9-85df-a5ede31dbffc.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column village_code
+		dataType: string
+		lineageTag: aa8cf308-9d93-4c9d-b928-31b526a780e5
+		summarizeBy: none
+		sourceColumn: village_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary_type
+		dataType: string
+		lineageTag: 2cbbad02-b48c-492b-8649-37509c0e4eef
+		summarizeBy: none
+		sourceColumn: summary_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column kpi_group
+		dataType: string
+		lineageTag: 0845ba45-b705-4970-94eb-cb61f147a112
+		summarizeBy: none
+		sourceColumn: kpi_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_type
+		dataType: string
+		lineageTag: 249f7328-d258-43da-86f4-1c529644ae10
+		summarizeBy: none
+		sourceColumn: data_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column decimals
+		dataType: int64
+		formatString: 0
+		lineageTag: 23138032-dd16-47ac-ab31-b1fdd20c147b
+		summarizeBy: sum
+		sourceColumn: decimals
+
+		annotation SummarizationSetBy = Automatic
+
+	column numerator
+		dataType: double
+		lineageTag: 6227f799-df0e-4e41-be09-ebad78372755
+		summarizeBy: sum
+		sourceColumn: numerator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column denominator
+		dataType: double
+		lineageTag: 1997be48-0711-47c5-a889-d6122baf0148
+		summarizeBy: sum
+		sourceColumn: denominator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Cumulative and Realised Sales' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3752096125893962.2.azuredatabricks.net", "sql/protocolv1/o/3752096125893962/0306-040335-bqgo537k", [Catalog="hive_metastore", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="hive_metastore",Kind="Database"]}[Data], "SELECT #(lf) 'Actual sales price growth in %' AS kpi_name#(lf), salemonth as reporting_month#(lf), location as village_code#(lf)--, assetid#(lf)--,contractid#(lf),'Average' AS summary_type#(lf),'None' AS kpi_group#(lf),'Percent' as data_type#(lf),2 as decimals#(lf)--,actualsettlementdate#(lf)--,salespricemst#(lf)--,basevalue202206#(lf)--,actualsalespricegrowth#(lf)--,months_since_baseline#(lf),SUM(actualsalespricegrowth) AS numerator#(lf),SUM(basevalue202206) AS denominator#(lf)#(lf)FROM (#(lf)SELECT#(lf)ROW_NUMBER() over(PARTITION BY A.assetid ORDER BY C.actualsettlementdate DESC) AS latest,#(lf)A.location,#(lf)a.assetid,#(lf)c.contractid,#(lf)cast(C.salespricemst as decimal(25,5)) as salespricemst ,#(lf)cast(o.amount as decimal(25,5)) as opp_amount,#(lf)cast(l.value as decimal(25,5)) AS basevalue202206,#(lf)cast(C.salespricemst as decimal(25,5)) - cast(basevalue202206 as decimal(25,5)) AS actualsalespricegrowth,#(lf)date_trunc('month',C.actualsettlementdate) AS salemonth,#(lf)c.actualsettlementdate,#(lf)l.period as baseline_date,#(lf)months_between( date_trunc('month',C.actualsettlementdate), date_trunc('month',l.period) , false ) months_since_baseline#(lf)FROM standardised_dynamics365_db.assettable A#(lf)LEFT JOIN standardised_dynamics365_db.rlm_contractstable C ON A.assetid = C.assetid AND C.audit_is_current = 1#(lf)left join hive_metastore.standardised_dynamics365_db.rlm_unitdetails ud on a.assetid = ud.assetid and ud.audit_is_current = 1#(lf)LEFT JOIN hive_metastore.standardised_manual_msp_list_db.price_list_jan_22_to_sep_23 l ON A.assetid = l.unit_number AND l.period = '2022-06-30'#(lf)left join hive_metastore.standardised_salesforce_db.contract sc on c.ContractId = sc.Contract_Number__c and sc.audit_is_current = 1#(lf)left join hive_metastore.standardised_salesforce_db.opportunity o on sc.Opportunity__c = o.Id and o.audit_is_current = 1#(lf)WHERE A.audit_is_current = 1#(lf)and ud.AssetType <> 3   #(lf)and A.AssetGroup = 'UNIT'  #(lf)#(lf)#(lf)) a#(lf)--left join hive_metastore.standardised_allvillageinfo_db.villageinfo vil on a.location = vil.d365dimension and vil.audit_is_current = 1#(lf)WHERE latest = 1#(lf)and salemonth >= '2022-06-01T00:00:00.000+0000' and salemonth < date_trunc('month', current_date())#(lf)#(lf)group by 1,2,3,4,5,6", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

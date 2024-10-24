@@ -1,0 +1,96 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 2359.1830985915485,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 3692,
+            "y": 0
+          },
+          "nodeIndex": "allvillage",
+          "nodeLineageTag": "6bbb18b2-55fb-4a88-ae70-b936dfed1328",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 239
+          },
+          "nodeIndex": "MSP growth",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3124,
+            "y": 239
+          },
+          "nodeIndex": "Cumulative and Realised Sales",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2840,
+            "y": 239
+          },
+          "nodeIndex": "Actual sales price growth",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3529.4084507042248,
+            "y": 330.71126760563385
+          },
+          "nodeIndex": "Sales, Stock & Waitlist",
+          "nodeLineageTag": "41da5929-2e48-40f1-b2d4-1165317b3fdb",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 239
+          },
+          "nodeIndex": "Residential prices in postcode",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 71,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

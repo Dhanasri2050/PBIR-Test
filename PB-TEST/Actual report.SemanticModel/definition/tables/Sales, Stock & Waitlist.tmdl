@@ -1,0 +1,138 @@
+table 'Sales, Stock & Waitlist'
+	lineageTag: 41da5929-2e48-40f1-b2d4-1165317b3fdb
+
+	measure 'Number of Sales' = ```
+			
+			CALCULATE(
+			    SUM('Sales, Stock & Waitlist'[numerator]),
+			    FILTER(
+			        'Sales, Stock & Waitlist',
+			        'Sales, Stock & Waitlist'[kpi_name] = "Number of sales"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: c379de76-e138-48e2-a3fa-0dada5ae32be
+
+	measure 'Number of Stock Available' = ```
+			
+			CALCULATE(
+			    SUM('Sales, Stock & Waitlist'[numerator]),
+			    FILTER(
+			        'Sales, Stock & Waitlist',
+			        'Sales, Stock & Waitlist'[kpi_name] = "Stock available for sale"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: a09049ec-3d93-410d-8121-fcff8ef70bea
+
+	measure 'Number of Waitlist' = ```
+			
+			CALCULATE(
+			    SUM('Sales, Stock & Waitlist'[numerator]),
+			    FILTER(
+			        'Sales, Stock & Waitlist',
+			        'Sales, Stock & Waitlist'[kpi_name] = "Waitlist size"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 6fe8f247-98df-476c-81fc-f0a1f3a08cdb
+
+	column KPI_Name
+		dataType: string
+		lineageTag: 064fc958-da71-488f-b07b-53b8e334accc
+		summarizeBy: none
+		sourceColumn: KPI_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_month
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 46f8cf05-3495-4966-a4f8-d5c64c7a2c5e
+		summarizeBy: none
+		sourceColumn: reporting_month
+
+		variation Variation
+			isDefault
+			relationship: 6788cf1e-5414-41d9-a25a-0446bf6c8e5c
+			defaultHierarchy: LocalDateTable_911fd443-3dd3-485f-987f-4fff8046d512.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column village_code
+		dataType: string
+		lineageTag: 5053debc-078e-42c8-9360-f532641f3b96
+		summarizeBy: none
+		sourceColumn: village_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary_type
+		dataType: string
+		lineageTag: 4143339b-5590-4efd-aee6-2c3c102100bb
+		summarizeBy: none
+		sourceColumn: summary_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI_Group
+		dataType: string
+		lineageTag: c2b6f75a-4c4e-4436-adcf-2f3e8009d367
+		summarizeBy: none
+		sourceColumn: KPI_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_type
+		dataType: string
+		lineageTag: 4428b547-a741-4857-ba6d-b24056870e93
+		summarizeBy: none
+		sourceColumn: data_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column decimals
+		dataType: int64
+		formatString: 0
+		lineageTag: a8492ad9-8320-4464-830e-4531be8cbb0a
+		summarizeBy: sum
+		sourceColumn: decimals
+
+		annotation SummarizationSetBy = Automatic
+
+	column numerator
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a94fb61-3935-4993-a802-9c9d42ffed5e
+		summarizeBy: sum
+		sourceColumn: numerator
+
+		annotation SummarizationSetBy = Automatic
+
+	column denominator
+		dataType: int64
+		formatString: 0
+		lineageTag: 82b77e85-e6ae-4cd4-a686-4d685e12553a
+		summarizeBy: sum
+		sourceColumn: denominator
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales, Stock & Waitlist' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3752096125893962.2.azuredatabricks.net", "sql/protocolv1/o/3752096125893962/0306-040335-bqgo537k", [Catalog="hive_metastore", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="hive_metastore",Kind="Database"]}[Data], "select#(lf)'Waitlist size' as KPI_Name#(lf),reporting_month#(lf),village_code#(lf),'Sum' as summary_type#(lf),'None' as KPI_Group#(lf),'Number' as data_type#(lf),0 as decimals#(lf),sum(on_waitlist) as numerator#(lf),1 as denominator#(lf)from (#(lf)#(lf)select distinct#(lf)opp.id#(lf),opp.accountid#(lf),opp.name#(lf),proj.name as village#(lf),vil.VillageManager#(lf)--,vil.areamanager#(lf),vil.State#(lf),vil.d365dimension as village_code#(lf),date_trunc('month', date.date) as reporting_month#(lf),case when opp.StageName = 'Waitlist' then 1 else 0 end as on_waitlist#(lf),opp.On_Wait_List__c#(lf),opp.On_Wait_List_Date__c#(lf),opp.Wait_List_Detail__c #(lf),date.date#(lf)from #(lf)hive_metastore.standardised_salesforce_db.opportunity opp #(lf)left join hive_metastore.standardised_salesforce_db.project__c proj on  opp.Preferred_Project__c = proj.id  and proj.audit_is_current = 1#(lf)left join hive_metastore.standardised_allvillageinfo_db.villageinfo vil on proj.Project_Code__c = vil.d365dimension and vil.audit_is_current = 1#(lf)left join hive_metastore.gold.calendar date on date.date between opp.On_Wait_List_Date__c and opp.audit_end_date#(lf)#(lf)where  opp.StageName in( 'Waitlist') #(lf)and date.date <= current_date()#(lf)#(lf)#(lf)) a #(lf)inner join (select distinct date_add(add_months(date_trunc('month',date) , 1),-1 ) as month_end from  hive_metastore.gold.calendar  ) month_end on a.date = month_end.month_end#(lf)where reporting_month >= '2022-06-01T00:00:00.000+0000'#(lf)group by 1,2,3,4,5,6#(lf)#(lf)union all#(lf)#(lf)select#(lf)'Stock available for sale' as KPI_Name#(lf),reporting_month#(lf),village_code#(lf),'Sum' as summary_type#(lf),product_family as KPI_Group#(lf),'Number' as data_type#(lf),0 as decimals#(lf),sum(num) as numerator#(lf),1 as denominator#(lf)#(lf)from (#(lf)select #(lf)distinct date_trunc('month', date.date) as reporting_month#(lf),date.date#(lf),prod.ProductCode#(lf),prod.Status__c#(lf),prod.family as product_family#(lf),proj.name as village#(lf),VillageManager#(lf)--,vil.areamanager#(lf),vil.State#(lf),vil.d365dimension as village_code#(lf),1 as num#(lf)#(lf)#(lf)from hive_metastore.standardised_salesforce_db.product2 prod  #(lf)left join hive_metastore.gold.calendar date on date.date between prod.audit_start_date and prod.audit_end_date#(lf)left join hive_metastore.standardised_salesforce_db.project__c proj on prod.Project__c = proj.id --and prod.audit_is_current = 1#(lf)left join hive_metastore.standardised_allvillageinfo_db.villageinfo vil on proj.Project_Code__c = vil.d365dimension and vil.audit_is_current = 1#(lf)#(lf)where 1=1#(lf)and prod.Status__c in ('Available','LegallyCleared')#(lf)and prod.family in ('IndependentLivingUnit','IndependentLivingApartment','ServicedApartment')#(lf)and prod.Usage_Strategy__c = 'DMF'#(lf)and date<= current_date()#(lf)#(lf)#(lf)) a #(lf)inner join (select distinct date_add(add_months(date_trunc('month',date) , 1),-1 ) as month_end from  hive_metastore.gold.calendar  ) month_end on a.date = month_end.month_end#(lf)#(lf)where reporting_month >= '2022-06-01T00:00:00.000+0000' and reporting_month < date_trunc('month', current_date())#(lf)#(lf)group by 1,2,3,4,5,6#(lf)#(lf)union all#(lf)#(lf)SELECT #(lf) 'Number of sales' AS kpi_name#(lf),reporting_month#(lf), location as village_code#(lf),'Sum' AS summary_type#(lf),'None' AS kpi_group#(lf),'Number' as data_type#(lf),0 as decimals#(lf),count(contractid) AS numerator#(lf),1 AS denominator#(lf)#(lf)FROM (#(lf)SELECT#(lf)#(lf)a.location#(lf),a.assetid#(lf),c.ContractId#(lf),C.ActualSettlementDate#(lf),date_trunc('month', c.ActualSettlementDate) as reporting_month#(lf)#(lf)FROM      standardised_dynamics365_db.rlm_contractstable C #(lf)LEFT JOIN standardised_dynamics365_db.assettable A ON C.assetid = A.assetid  AND A.audit_is_current = 1#(lf)left join hive_metastore.standardised_dynamics365_db.rlm_unitdetails ud on a.assetid = ud.assetid and ud.audit_is_current = 1#(lf)#(lf)#(lf)WHERE C.audit_is_current = 1#(lf)and ud.AssetType <> 3    #(lf)and A.AssetGroup = 'UNIT' #(lf)and date_trunc('month', c.ActualSettlementDate)  >=  '2022-06-01T00:00:00.000+0000'#(lf)and date_trunc('month', c.ActualSettlementDate) < date_trunc('month', current_date())#(lf)#(lf)) a#(lf)#(lf)group by 1,2,3,4,5,6", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

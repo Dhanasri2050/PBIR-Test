@@ -1,0 +1,406 @@
+table allvillage
+	lineageTag: 6bbb18b2-55fb-4a88-ae70-b936dfed1328
+
+	column AVMMobile
+		dataType: string
+		lineageTag: a1ab2d59-3343-4d0a-b817-983620fd76a6
+		summarizeBy: none
+		sourceColumn: AVMMobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: 27f593b8-1ec5-4655-82a3-80a574571953
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column AreaManager
+		dataType: string
+		lineageTag: 4f2ea428-f7c4-4935-b01d-c2c309d44c56
+		summarizeBy: none
+		sourceColumn: AreaManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssistantVillageManager
+		dataType: string
+		lineageTag: 58293c4b-f37d-415f-ac22-24af7149cb6c
+		summarizeBy: none
+		sourceColumn: AssistantVillageManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chairperson
+		dataType: string
+		lineageTag: 3fe07b4e-3f0e-493f-ae44-567634ecf891
+		summarizeBy: none
+		sourceColumn: Chairperson
+
+		annotation SummarizationSetBy = Automatic
+
+	column CommunityMarketingManager
+		dataType: string
+		lineageTag: d38f743b-5d90-47f5-8cdf-a409ec41730f
+		summarizeBy: none
+		sourceColumn: CommunityMarketingManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractSpecialist
+		dataType: string
+		lineageTag: 9eac1ed1-ea49-4c19-a463-09f1a52583cd
+		summarizeBy: none
+		sourceColumn: ContractSpecialist
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractSpecialistManager
+		dataType: string
+		lineageTag: d7f3591e-aa7b-46ae-8dfd-0a53c43c5e41
+		summarizeBy: none
+		sourceColumn: ContractSpecialistManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column D365Dimension
+		dataType: string
+		lineageTag: e547e354-20c6-4ef1-a410-e432a8fb06dc
+		summarizeBy: none
+		sourceColumn: D365Dimension
+
+		annotation SummarizationSetBy = Automatic
+
+	column DirectLandline
+		dataType: string
+		lineageTag: 839a3a22-f27a-477c-b062-ee7a83b26591
+		summarizeBy: none
+		sourceColumn: DirectLandline
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELTSponsor
+		dataType: string
+		lineageTag: 6d3da64a-7ab9-40ba-a7ba-36a560992e46
+		summarizeBy: none
+		sourceColumn: ELTSponsor
+
+		annotation SummarizationSetBy = Automatic
+
+	column LandSizeSQMetres
+		dataType: string
+		lineageTag: dd475bef-5516-4824-a404-feb8d7f402bc
+		summarizeBy: none
+		sourceColumn: LandSizeSQMetres
+
+		annotation SummarizationSetBy = Automatic
+
+	column NoOfResidences
+		dataType: string
+		lineageTag: 6ec6e44a-0a21-4168-8f54-2f94fea49be6
+		summarizeBy: none
+		sourceColumn: NoOfResidences
+
+		annotation SummarizationSetBy = Automatic
+
+	column OperatorOwned
+		dataType: string
+		lineageTag: 359b352b-47f9-454d-8bb4-3f17b18e8dc3
+		summarizeBy: none
+		sourceColumn: OperatorOwned
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostCode
+		dataType: string
+		lineageTag: e590278a-347e-4e9b-b91e-7f12186870ac
+		summarizeBy: none
+		sourceColumn: PostCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resident_StrataOwned
+		dataType: string
+		lineageTag: 443b3522-99cc-483a-aed1-509620eccca2
+		summarizeBy: none
+		sourceColumn: Resident_StrataOwned
+
+		annotation SummarizationSetBy = Automatic
+
+	column SA
+		dataType: string
+		lineageTag: 1dee1bd6-f5b1-4beb-b5a1-8f0de8b5338a
+		summarizeBy: none
+		sourceColumn: SA
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesManager
+		dataType: string
+		lineageTag: 1610fc5b-ecd4-4a67-966a-10302e05ee0b
+		summarizeBy: none
+		sourceColumn: SalesManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesProfessional
+		dataType: string
+		lineageTag: 0fe5dbe6-5e71-4559-b179-0e704209b6c0
+		summarizeBy: none
+		sourceColumn: SalesProfessional
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesProfessionalMobile
+		dataType: string
+		lineageTag: efba6dbc-2da7-4ba7-a479-944197913fac
+		summarizeBy: none
+		sourceColumn: SalesProfessionalMobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesProfessionalemailaddress
+		dataType: string
+		lineageTag: e6a08594-6f65-432f-a6b0-bb16c7d0e3da
+		summarizeBy: none
+		sourceColumn: SalesProfessionalemailaddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 16240409-d573-49db-91f0-50d7e20605b3
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Suburb
+		dataType: string
+		lineageTag: d558d264-8e00-482d-8802-ca1e2bcf4469
+		summarizeBy: none
+		sourceColumn: Suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column V2OTDS
+		dataType: string
+		lineageTag: dc2ccf88-9a6e-4fb4-94d0-8fc9a81f6ed2
+		summarizeBy: none
+		sourceColumn: V2OTDS
+
+		annotation SummarizationSetBy = Automatic
+
+	column VMMobile
+		dataType: string
+		lineageTag: ffe73266-017d-4059-a8eb-96ea9e3d331d
+		summarizeBy: none
+		sourceColumn: VMMobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Village
+		dataType: string
+		lineageTag: 7f12d5f0-f8df-44e7-9a8f-ebae922ae944
+		summarizeBy: none
+		sourceColumn: Village
+
+		annotation SummarizationSetBy = Automatic
+
+	column VillageAccountant
+		dataType: string
+		lineageTag: 9eb1a224-1e89-4e51-9a1a-6e11b6e8dd78
+		summarizeBy: none
+		sourceColumn: VillageAccountant
+
+		annotation SummarizationSetBy = Automatic
+
+	column VillageAdmin
+		dataType: string
+		lineageTag: 61f84173-eab8-4db7-83d7-3d4a9d464bf9
+		summarizeBy: none
+		sourceColumn: VillageAdmin
+
+		annotation SummarizationSetBy = Automatic
+
+	column VillageEmailAddress
+		dataType: string
+		lineageTag: 83b5f76c-318c-45d5-908a-a3445f914344
+		summarizeBy: none
+		sourceColumn: VillageEmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column VillageManager
+		dataType: string
+		lineageTag: cdfadc6b-daef-4a20-9b48-585c92b0a9ab
+		summarizeBy: none
+		sourceColumn: VillageManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column WellbeingCoord
+		dataType: string
+		lineageTag: db970f01-f0cc-4456-b9a6-f4cd7da6accd
+		summarizeBy: none
+		sourceColumn: WellbeingCoord
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_pk_hash
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e715e91-894c-4435-aaaa-f5c5375850f1
+		summarizeBy: sum
+		sourceColumn: audit_pk_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_row_hash
+		dataType: int64
+		formatString: 0
+		lineageTag: f791c529-38f7-4124-8bba-2c75264178fc
+		summarizeBy: sum
+		sourceColumn: audit_row_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_source_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3894ec9a-7d84-4019-be02-0651f5a9f59e
+		summarizeBy: none
+		sourceColumn: audit_source_date
+
+		variation Variation
+			isDefault
+			relationship: 1ce5171e-4c52-4190-835d-2e08f64a7633
+			defaultHierarchy: LocalDateTable_38683b58-2800-4276-bc7e-94f32b2f4f73.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column audit_source_filename
+		dataType: string
+		lineageTag: 22b17a84-1288-4f2d-83ef-1efe514bb84c
+		summarizeBy: none
+		sourceColumn: audit_source_filename
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_source_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3557ea8d-9d7c-49bb-9b58-6f4d3692fc0e
+		summarizeBy: none
+		sourceColumn: audit_source_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 17cf1ea3-f890-432b-8459-1aa4f128a280
+			defaultHierarchy: LocalDateTable_18bbe360-094a-4972-897c-dcaec9cd0774.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_job_start_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 442595a0-0d3f-45e9-a88c-e842f8520708
+		summarizeBy: none
+		sourceColumn: audit_job_start_timestamp
+
+		variation Variation
+			isDefault
+			relationship: f40e2391-2b4a-4446-9a73-fdae98555683
+			defaultHierarchy: LocalDateTable_ce642185-c6e6-4a4f-8971-b946370de8c2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: string
+		lineageTag: 76df8300-97d1-4cab-a3cc-5af48804c015
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_record_insert_dt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bb236f84-b3b4-4902-b0c7-7e2b9f6b3408
+		summarizeBy: none
+		sourceColumn: audit_record_insert_dt
+
+		variation Variation
+			isDefault
+			relationship: c580a501-845b-48e2-8c2b-6b476f826aef
+			defaultHierarchy: LocalDateTable_ecb7e0cb-469e-45f6-9afa-b48848f2c3af.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_record_job_id
+		dataType: string
+		lineageTag: a93ab131-2cdc-41ea-8104-02a311d15ec7
+		summarizeBy: none
+		sourceColumn: audit_record_job_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d3d0489b-7d33-4be6-aeb3-f658618640f6
+		summarizeBy: none
+		sourceColumn: audit_start_date
+
+		variation Variation
+			isDefault
+			relationship: be5d57e2-2a76-427e-a00c-e56cdfd73096
+			defaultHierarchy: LocalDateTable_591d14a5-01a3-468c-accb-813df6929656.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a290f0f8-870d-45f7-8280-1066881261e4
+		summarizeBy: none
+		sourceColumn: audit_end_date
+
+		variation Variation
+			isDefault
+			relationship: 66cbc3f0-bf86-42f1-854a-0e9b60bb73f2
+			defaultHierarchy: LocalDateTable_73902fbd-f8b8-4ad9-8819-7a8ceabc90c3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_record_type
+		dataType: string
+		lineageTag: 43828f20-6a2d-47aa-a22f-8ff4ce1c496c
+		summarizeBy: none
+		sourceColumn: audit_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_is_current
+		dataType: int64
+		formatString: 0
+		lineageTag: 7af474fb-b4f4-4c3f-834d-513a4a60c335
+		summarizeBy: sum
+		sourceColumn: audit_is_current
+
+		annotation SummarizationSetBy = Automatic
+
+	partition allvillage = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3752096125893962.2.azuredatabricks.net", "sql/protocolv1/o/3752096125893962/0306-040335-bqgo537k", [Catalog="hive_metastore", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="hive_metastore",Kind="Database"]}[Data], "select * from hive_metastore.standardised_allvillageinfo_db.villageinfo where audit_is_current = 1", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,123 @@
+table 'Residential prices in postcode'
+	lineageTag: 4e124d06-10e0-417e-b7d2-05f476dfda47
+
+	measure 'Average price of residential homes in postcode today' =
+			
+			VAR num =
+			    CALCULATE (
+			        SUMX (
+			            'Residential prices in postcode',
+			            [numerator]
+			        )
+			    )
+			VAR den =
+			    CALCULATE (
+			        SUMX (
+			            'Residential prices in postcode',
+			            [denominator]
+			        )
+			    )
+			RETURN
+			    DIVIDE (
+			        num,
+			        den,
+			        0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3ea2b218-f043-4dee-b5ca-5bed381f8d70
+
+	column KPI_Name
+		dataType: string
+		lineageTag: 6e6766aa-d6c3-483a-9aec-137d01893a2d
+		summarizeBy: none
+		sourceColumn: KPI_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_month
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 6cde901b-9202-443c-8a1d-e42f60da0811
+		summarizeBy: none
+		sourceColumn: reporting_month
+
+		variation Variation
+			isDefault
+			relationship: 7df4a367-eb51-49bb-bc0a-6e2ccd3df918
+			defaultHierarchy: LocalDateTable_3366626e-c82a-4802-b561-d95b2dab63a7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column village_code
+		dataType: string
+		lineageTag: bdb5801b-a6c6-4ad4-8c2e-7fe8cbd75ca4
+		summarizeBy: none
+		sourceColumn: village_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary_type
+		dataType: string
+		lineageTag: 99ee0d37-a3aa-48b5-b163-b79729576646
+		summarizeBy: none
+		sourceColumn: summary_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI_Group
+		dataType: string
+		lineageTag: 93e03c40-ae88-44f1-acbf-bdff11161c88
+		summarizeBy: none
+		sourceColumn: KPI_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_type
+		dataType: string
+		lineageTag: c834d519-52a0-4b21-80ce-2ad3e08c8915
+		summarizeBy: none
+		sourceColumn: data_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column decimals
+		dataType: int64
+		formatString: 0
+		lineageTag: ed06ac4e-7bd0-4293-9fa5-b0d89913941f
+		summarizeBy: sum
+		sourceColumn: decimals
+
+		annotation SummarizationSetBy = Automatic
+
+	column numerator
+		dataType: double
+		lineageTag: a041ca26-14d1-44f6-8cac-4fc6df0bca80
+		summarizeBy: sum
+		sourceColumn: numerator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column denominator
+		dataType: double
+		lineageTag: 6df8658e-2726-4aec-9d9d-0e2bbc93a703
+		summarizeBy: sum
+		sourceColumn: denominator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Residential prices in postcode' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3752096125893962.2.azuredatabricks.net", "sql/protocolv1/o/3752096125893962/0306-040335-bqgo537k", [Catalog="hive_metastore", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="hive_metastore",Kind="Database"]}[Data], "select#(lf)'Average price as % of residential prices in postcode' as KPI_Name#(lf),date_trunc('month',msp.date) as reporting_month#(lf),msp.location as village_code#(lf)--,msp.Village#(lf)--,msp.AssetId#(lf),'Average' AS summary_type#(lf),'None' AS KPI_Group#(lf),'Percent' as data_type#(lf),2 as decimals#(lf),sum(msp.value)  as numerator#(lf),sum(mdata.MHP_12M) as denominator#(lf)#(lf)from (#(lf)select cal.date ,unit.AssetId, ass.location, vil.Village#(lf),cast(unit.MarketValue as decimal (25,5)) as value#(lf)#(lf)from hive_metastore.gold.calendar cal#(lf)left join hive_metastore.standardised_dynamics365_db.rlm_unitdetails unit on cal.date between unit.audit_start_date and unit.audit_end_date#(lf)left join hive_metastore.standardised_dynamics365_db.assettable ass on unit.AssetId = ass.AssetId and ass.audit_is_current = 1#(lf)left join hive_metastore.standardised_allvillageinfo_db.villageinfo vil on ass.location = vil.d365dimension and vil.audit_is_current = 1#(lf)Inner join (select  distinct date_add(add_months(date_trunc('month',date),1),-1) as month_end from hive_metastore.gold.calendar) month  on cal.date = month.month_end#(lf)where  cal.date <= current_date()#(lf)and ass.AssetGroup = 'UNIT'#(lf)and unit.AssetType <> 3    #(lf)--and ass.AssetId in ('ARSC.004', 'ARSC.005', 'ARSC.006')#(lf)--and location = '4BCRV'#(lf)) msp#(lf)#(lf)left join hive_metastore.standardised_driver_tree_marketability_data_db.dt_marketability_data mdata on msp.date between coalesce(mdata.audit_start_date,'2023-09-30') and mdata.audit_end_date#(lf)and msp.location = mdata.LocationID#(lf)#(lf)where mdata.MHP_12M is not null#(lf)and date_trunc('month',msp.date) >= '2022-06-01T00:00:00.000+0000' and date_trunc('month',msp.date) < date_trunc('month', current_date())#(lf)#(lf)group by 1,2,3, 4,5,6", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

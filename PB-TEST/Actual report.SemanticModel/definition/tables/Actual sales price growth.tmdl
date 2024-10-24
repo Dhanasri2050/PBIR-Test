@@ -1,0 +1,169 @@
+table 'Actual sales price growth'
+	lineageTag: a9349f78-f098-4edd-a49b-61d9a97087c0
+
+	measure 'Actual Sales Price Growth % NSW' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "NSW" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5725d4c3-dcf1-4d6f-ac08-a95ba7c7453c
+
+	measure 'Actual Sales Target 3%' = 0.03
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8d2975c3-c425-4f1e-84ea-c1231dfb4dfb
+
+	measure 'Actual Sales Price Growth % ACT' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "ACT" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 87c334ec-a363-4a1c-b604-61e2fd948478
+
+	measure 'Actual Sales Price Growth % QLD' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "QLD" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 61481ec9-7603-4b4b-8b79-d298ca4d9359
+
+	measure 'Actual Sales Price Growth % SA' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "SA" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 217ab387-4632-45c3-bbb8-1e4410fa8bd9
+
+	measure 'Actual Sales Price Growth % VIC' = ```
+			
+			CALCULATE(
+			    DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator])),
+			    KEEPFILTERS ( allvillage[State] = "VIC" )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 74c9b0c5-174f-4620-bfb7-1cc6495ee378
+
+	measure 'Actual Sales Price Growth %' = ```
+			
+			DIVIDE(SUM('Actual sales price growth'[numerator]), SUM('Actual sales price growth'[denominator]))
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 56943c37-9d07-410b-a256-add0d004d61b
+
+	column kpi_name
+		dataType: string
+		lineageTag: 68d27bca-064b-4849-b979-1c8c508bc3f3
+		summarizeBy: none
+		sourceColumn: kpi_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_month
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 455ebcd0-04a2-452d-9458-070d71e28529
+		summarizeBy: none
+		sourceColumn: reporting_month
+
+		variation Variation
+			isDefault
+			relationship: eb9f91db-e2f5-4ab3-9f18-dfa22c0a923a
+			defaultHierarchy: LocalDateTable_38f2b726-373c-4ea6-b332-7efbf1fe697d.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column village_code
+		dataType: string
+		lineageTag: e1995bfc-0a23-4e4a-988e-fc954872baae
+		summarizeBy: none
+		sourceColumn: village_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary_type
+		dataType: string
+		lineageTag: fbf57dba-392c-4a69-acb7-1382003f732e
+		summarizeBy: none
+		sourceColumn: summary_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column kpi_group
+		dataType: string
+		lineageTag: 300b4b20-87a4-4128-a211-5a1e4f841ffc
+		summarizeBy: none
+		sourceColumn: kpi_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_type
+		dataType: string
+		lineageTag: 382a2667-dce3-4581-bae0-c900dabe3302
+		summarizeBy: none
+		sourceColumn: data_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column decimals
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e5153f2-1003-4517-b002-0e983bb528cb
+		summarizeBy: sum
+		sourceColumn: decimals
+
+		annotation SummarizationSetBy = Automatic
+
+	column numerator
+		dataType: double
+		lineageTag: 7a33d143-f2e3-464e-99ed-63813253aaf1
+		summarizeBy: sum
+		sourceColumn: numerator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column denominator
+		dataType: double
+		lineageTag: b014e38a-5248-4ee2-bf21-41bc6474274c
+		summarizeBy: sum
+		sourceColumn: denominator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Actual sales price growth' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3752096125893962.2.azuredatabricks.net", "sql/protocolv1/o/3752096125893962/0306-040335-bqgo537k", [Catalog="hive_metastore", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="hive_metastore",Kind="Database"]}[Data], "SELECT #(lf) 'Actual sales price growth in %' AS kpi_name#(lf), salemonth as reporting_month#(lf), location as village_code#(lf)--, assetid#(lf)--,contractid#(lf),'Average' AS summary_type#(lf),'None' AS kpi_group#(lf),'Percent' as data_type#(lf),2 as decimals#(lf)--,actualsettlementdate#(lf)--,salespricemst#(lf)--,basevalue202206#(lf)--,actualsalespricegrowth#(lf)--,months_since_baseline#(lf),SUM(actualsalespricegrowth / (months_since_baseline / 12) )AS numerator#(lf),SUM(basevalue202206) AS denominator#(lf)--,SUM(actualsalespricegrowth / (months_since_baseline / 12) ) / SUM(basevalue202206) * 100 as test#(lf)FROM (#(lf)SELECT#(lf)ROW_NUMBER() over(PARTITION BY A.assetid ORDER BY C.actualsettlementdate DESC) AS latest,#(lf)A.location,#(lf)a.assetid,#(lf)c.contractid,#(lf)cast(C.salespricemst as decimal(25,5)) as salespricemst ,#(lf)cast(o.amount as decimal(25,5)) as opp_amount,#(lf)cast(l.value as decimal(25,5)) AS basevalue202206,#(lf)cast(C.salespricemst as decimal(25,5)) - cast(basevalue202206 as decimal(25,5)) AS actualsalespricegrowth,#(lf)date_trunc('month',C.actualsettlementdate) AS salemonth,#(lf)c.actualsettlementdate,#(lf)l.period as baseline_date,#(lf)months_between( date_trunc('month',C.actualsettlementdate), date_trunc('month',l.period) , false ) months_since_baseline#(lf)FROM standardised_dynamics365_db.assettable A#(lf)LEFT JOIN standardised_dynamics365_db.rlm_contractstable C ON A.assetid = C.assetid AND C.audit_is_current = 1#(lf)left join hive_metastore.standardised_dynamics365_db.rlm_unitdetails ud on a.assetid = ud.assetid and ud.audit_is_current = 1#(lf)LEFT JOIN hive_metastore.standardised_manual_msp_list_db.price_list_jan_22_to_sep_23 l ON A.assetid = l.unit_number AND l.period = '2022-06-30'#(lf)left join hive_metastore.standardised_salesforce_db.contract sc on c.ContractId = sc.Contract_Number__c and sc.audit_is_current = 1#(lf)left join hive_metastore.standardised_salesforce_db.opportunity o on sc.Opportunity__c = o.Id and o.audit_is_current = 1#(lf)WHERE A.audit_is_current = 1#(lf)and ud.AssetType <> 3    #(lf)and A.AssetGroup = 'UNIT' #(lf)#(lf)#(lf)) a#(lf)--left join hive_metastore.standardised_allvillageinfo_db.villageinfo vil on a.location = vil.d365dimension and vil.audit_is_current = 1#(lf)WHERE latest = 1#(lf)and salemonth >= '2022-06-01T00:00:00.000+0000' and salemonth < date_trunc('month', current_date())#(lf)#(lf)group by 1,2,3,4,5,6", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

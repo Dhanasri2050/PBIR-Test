@@ -1,0 +1,37 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.137.952.0 (24.10)
+
+annotation PBI_QueryOrder = ["Residential prices in postcode","MSP growth","Actual sales price growth","Cumulative and Realised Sales","allvillage","Sales, Stock & Waitlist"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_23cae8b0-f018-4287-aca5-d710831965d6
+ref table 'Residential prices in postcode'
+ref table LocalDateTable_3366626e-c82a-4802-b561-d95b2dab63a7
+ref table 'MSP growth'
+ref table LocalDateTable_be6d13ba-7860-4f0d-ae8c-8fcf6cdf40c6
+ref table 'Actual sales price growth'
+ref table LocalDateTable_38f2b726-373c-4ea6-b332-7efbf1fe697d
+ref table 'Cumulative and Realised Sales'
+ref table LocalDateTable_f101a8ab-7464-4be9-85df-a5ede31dbffc
+ref table allvillage
+ref table LocalDateTable_38683b58-2800-4276-bc7e-94f32b2f4f73
+ref table LocalDateTable_18bbe360-094a-4972-897c-dcaec9cd0774
+ref table LocalDateTable_ce642185-c6e6-4a4f-8971-b946370de8c2
+ref table LocalDateTable_ecb7e0cb-469e-45f6-9afa-b48848f2c3af
+ref table LocalDateTable_591d14a5-01a3-468c-accb-813df6929656
+ref table LocalDateTable_73902fbd-f8b8-4ad9-8819-7a8ceabc90c3
+ref table 'Sales, Stock & Waitlist'
+ref table LocalDateTable_911fd443-3dd3-485f-987f-4fff8046d512
+
+ref cultureInfo en-GB
+
